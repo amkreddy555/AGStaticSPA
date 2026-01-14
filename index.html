@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>AquaGenius | Ultra Pure Water Solutions</title>
+    <meta name="description"
+        content="AquaGenius provides elite water purification systems using advanced RO, UV, and Copper technology.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #008ecc;
+            --bg-deep: #050a1e;
+            --bg-surface: #0a1428;
+            --accent: #00f5d4;
+            --gold: #ffcc33;
+            --white: #ffffff;
+            --text-main: #f8faff;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+            --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.2);
+            --section-padding: 100px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-deep);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            /* Support for mobile app notches */
+            padding-top: calc(1.5rem + env(safe-area-inset-top));
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .header.scrolled {
+            padding: 1rem 0;
+            background: rgba(5, 10, 30, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logoText h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 1;
+            color: #ffffff;
+        }
+
+        .logoText span {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .desktopNav {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .navLinks {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .navItem {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .navItem:hover,
+        .navItem.active {
+            color: var(--gold);
+        }
+
+        .navItem::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+            border-radius: var(--radius-full);
+        }
+
+        .navItem:hover::after,
+        .navItem.active::after {
+            width: 100%;
+        }
+
+        .menuToggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            width: 30px;
+            z-index: 1001;
+        }
+
+        .menuToggle span {
+            display: block;
+            height: 2px;
+            background-color: #ffffff;
+            transition: var(--transition);
+        }
+
+        .menuToggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menuToggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menuToggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobileNav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: #050a1e;
+            z-index: 1000;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobileNav.visible {
+            right: 0;
+        }
+
+        .mobileLinks {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .mobileItem {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* Sections Visibility */
+        #main-view {
+            display: block;
+        }
+
+        #product-view {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 750px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background-color: var(--bg-deep);
+        }
+
+        .bgLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 0;
+        }
+
+        .bgLayer.active {
+            opacity: 1;
+        }
+
+        .heroOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(2, 6, 23, 0.7) 0%, rgba(2, 6, 23, 0.3) 50%, transparent 100%);
+            z-index: 1;
+        }
+
+        .heroContent {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .heroInner {
+            max-width: 900px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .heroBadge {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 40px;
+        }
+
+        .heroBadge::before,
+        .heroBadge::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .heroBadge::before {
+            left: 0;
+        }
+
+        .heroBadge::after {
+            right: 0;
+        }
+
+        .heroTitle {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .heroSubtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.8;
+        }
+
+        .heroCtaGroup {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .primaryBtn {
+            background: var(--primary);
+            color: var(--bg-deep);
+            padding: 1.2rem 3rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-glow);
+            display: inline-block;
+        }
+
+        .secondaryBtn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 1.2rem 3rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+
+        .heroPulse {
+            position: absolute;
+            bottom: 10%;
+            right: 15%;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: 0;
+            animation: pulseRotate 10s infinite alternate;
+        }
+
+        @keyframes pulseRotate {
+            from {
+                transform: scale(1) translate(0, 0);
+            }
+
+            to {
+                transform: scale(1.2) translate(50px, 30px);
+            }
+        }
+
+        /* Products Section */
+        .productsSection {
+            padding: var(--section-padding);
+            background: var(--bg-surface);
+        }
+
+        .sectionHeader {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .sectionSubtitle {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .sectionTitle {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        .sectionDesc {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .productGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .productCardInner {
+            background: var(--bg-surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .productCard:hover .productCardInner {
+            transform: translateY(-15px) rotateX(5deg) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .productImageWrapper {
+            position: relative;
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .productImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .productCard:hover .productImage {
+            transform: scale(1.1);
+        }
+
+        .productTag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--bg-deep);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .productCardBody {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .productName {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .productFeatures {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .featureTag {
+            font-size: 0.75rem;
+            background: var(--glass);
+            color: var(--text-dim);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--glass-border);
+        }
+
+        .productPricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 25px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .priceValue {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .priceDivider {
+            width: 1px;
+            height: 40px;
+            background: var(--glass-border);
+        }
+
+        .productCta {
+            width: 100%;
+            background: var(--bg-deep);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .productCard:hover .productCta {
+            background: var(--primary);
+            color: var(--bg-deep);
+            border-color: var(--primary);
+        }
+
+        /* Services */
+        .servicesSection {
+            padding: var(--section-padding);
+            background: var(--bg-deep);
+        }
+
+        .serviceGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .serviceCard {
+            padding: 50px 40px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .serviceCard:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .serviceIcon {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+        }
+
+        .serviceCardTitle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .serviceCardDesc {
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* Video */
+        .videoSection {
+            padding: var(--section-padding);
+            background: var(--bg-surface);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .playerContainer {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mainPlayer {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .videoPlayer {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .playBtnCircle {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .playTriangle {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 0 15px 25px;
+            border-color: transparent transparent transparent var(--bg-deep);
+            margin-left: 5px;
+        }
+
+        .videoPlaylist {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .playlistItem {
+            background: var(--bg-deep);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .playlistItem.activeItem {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .miniThumb {
+            width: 80px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius-sm);
+        }
+
+        .miniInfo h4 {
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        /* Reviews */
+        .reviewsSection {
+            padding: var(--section-padding);
+            background-color: var(--bg-deep);
+            border-top: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .reviewMarquee {
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .reviewTrack {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: scrollMarquee 40s linear infinite;
+        }
+
+        @keyframes scrollMarquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .reviewCard {
+            width: 400px;
+            padding: 40px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--glass-border);
+            flex-shrink: 0;
+        }
+
+        .reviewStars {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .reviewQuote {
+            font-size: 1.15rem;
+            color: var(--white);
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .reviewAuthor {
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* About & FAQ */
+        .aboutSection {
+            padding: var(--section-padding);
+            background: var(--bg-surface);
+        }
+
+        .aboutGrid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+        }
+
+        .stat strong {
+            font-size: 3rem;
+            color: var(--primary);
+            display: block;
+        }
+
+        .founderCard {
+            position: relative;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+        }
+
+        .founderImg {
+            height: 100%;
+            width: 100%;
+            background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: top center;
+        }
+
+        .founderInfo {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            padding: 24px;
+            background: rgba(0, 10, 30, 0.4);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .faqSection {
+            padding: var(--section-padding);
+            background: var(--bg-deep);
+        }
+
+        .faqList {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faqItem {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faqQuestion {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faqAnswer {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0, 1, 0, 1);
+            padding: 0 30px;
+        }
+
+        .faqItem.itemOpen .faqAnswer {
+            max-height: 500px;
+            padding-bottom: 30px;
+        }
+
+        /* PDP Specific */
+        .pdpGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: flex-start;
+            margin-top: 40px;
+        }
+
+        .pdpImageWrapper {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            position: relative;
+            height: 500px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .pdpImg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.5s ease;
+        }
+
+        .pdpGallery {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .pdpThumb {
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .pdpThumb.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .pdpTitle {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .pdpFeatureGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .pdpPricing {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .pdpPriceCard {
+            flex: 1;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .pdpPriceCard.rentCard {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .pdpBackLink {
+            color: var(--text-dim);
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .pdpBackLink:hover {
+            color: var(--primary);
+        }
+
+        .videoGlimpseBtn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--bg-deep);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            padding: 100px 0 50px;
+            background-color: var(--bg-deep);
+            background-image: url('images/hero_bg.png');
+            background-size: cover;
+            background-position: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footerOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(5, 10, 30, 0.95), rgba(5, 10, 30, 0.8), rgba(5, 10, 30, 1));
+            z-index: 0;
+        }
+
+        .footerContent {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footerGrid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footerBottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .whatsappFloat {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 65px;
+            height: 65px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .waPulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #25d366;
+            border-radius: 50%;
+            animation: waPulseScroll 2s infinite;
+        }
+
+        @keyframes waPulseScroll {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .desktopNav {
+                display: none;
+            }
+
+            .menuToggle {
+                display: flex;
+            }
+
+            .aboutGrid,
+            .footerGrid,
+            .pdpGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .pdpTitle {
+                font-size: 3rem;
+            }
+
+            /* Video Section Mobile Fix */
+            .playerContainer {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .videoPlaylist {
+                max-height: 300px;
+            }
+
+            /* Mobile Menu Polish */
+            .mobileLinks {
+                gap: 1.5rem;
+                padding: 2rem;
+            }
+
+            .mobileItem {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            /* PDP Mobile Fixes */
+            .pdpPricing {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .pdpPriceCard {
+                padding: 1.5rem;
+            }
+
+            .pdpPricing .primaryBtn,
+            .pdpPricing .secondaryBtn {
+                width: 100% !important;
+                max-width: 280px;
+                display: flex;
+                justify-content: center;
+                margin: 0 auto;
+            }
+        }
+
+        /* App Button Styles Removed */
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container navbar">
+            <a href="#" onclick="navigateToSection(event, 'hero'); return false;" class="logo">
+                <div class="logoIcon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3105/3105807.png" alt="Logo" width="40"
+                        height="40">
+                </div>
+                <div class="logoText">
+                    <h1 class="glow-text">AQUAGENIUS</h1>
+                    <span>ULTRA PURE WATER</span>
+                </div>
+            </a>
+
+            <nav class="desktopNav" id="main-nav">
+                <ul class="navLinks">
+                    <li><a href="#hero" onclick="navigateToSection(event, 'hero')" class="navItem active">Home</a></li>
+                    <li><a href="#products" onclick="navigateToSection(event, 'products')" class="navItem">Products</a>
+                    </li>
+                    <li><a href="#services" onclick="navigateToSection(event, 'services')" class="navItem">Services</a>
+                    </li>
+                    <li><a href="#video" onclick="navigateToSection(event, 'video')" class="navItem">Media</a></li>
+                    <li><a href="#reviews" onclick="navigateToSection(event, 'reviews')" class="navItem">Reviews</a>
+                    </li>
+                    <li><a href="#about" onclick="navigateToSection(event, 'about')" class="navItem">About</a></li>
+                    <li><a href="#faq" onclick="navigateToSection(event, 'faq')" class="navItem">FAQ</a></li>
+                </ul>
+            </nav>
+
+            <button class="menuToggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobileNav" id="mobileNav">
+        <ul class="mobileLinks">
+            <li><a href="#hero" onclick="navigateToSection(event, 'hero')" class="mobileItem">Home</a></li>
+            <li><a href="#products" onclick="navigateToSection(event, 'products')" class="mobileItem">Products</a></li>
+            <li><a href="#services" onclick="navigateToSection(event, 'services')" class="mobileItem">Services</a></li>
+            <li><a href="#video" onclick="navigateToSection(event, 'video')" class="mobileItem">Media</a></li>
+            <li><a href="#reviews" onclick="navigateToSection(event, 'reviews')" class="mobileItem">Reviews</a></li>
+            <li><a href="#about" onclick="navigateToSection(event, 'about')" class="mobileItem">About</a></li>
+            <li><a href="#faq" onclick="navigateToSection(event, 'faq')" class="mobileItem">FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content View -->
+    <div id="main-view">
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="bgLayer active" style="background-image: url('images/hero_bg.png');"></div>
+            <div class="bgLayer" style="background-image: url('images/poster_lineup.png');"></div>
+            <div class="bgLayer" style="background-image: url('images/usp_highlight.png');"></div>
+            <div class="bgLayer" style="background-image: url('images/purchase_offers.png');"></div>
+            <div class="bgLayer" style="background-image: url('images/sub_offers.png');"></div>
+            <div class="heroOverlay"></div>
+            <div class="container heroContent">
+                <div class="heroInner">
+                    <span class="heroBadge" id="heroBadge">Next-Gen Purification</span>
+                    <h2 class="heroTitle" id="heroTitle">The Intelligent Choice for <br><span class="gradient-text">Pure
+                            Water.</span></h2>
+                    <p class="heroSubtitle" id="heroSubtitle">Experience the Deep Ocean treatment. Advanced RO, UV, and
+                        Copper technology crafted for those who refuse to compromise on health.</p>
+                    <div class="heroCtaGroup">
+                        <a href="#products" onclick="navigateToSection(event, 'products')" class="primaryBtn">Explorer
+                            Catalog</a>
+                        <a href="#video" onclick="navigateToSection(event, 'video')" class="secondaryBtn">Watch
+                            Video</a>
+                    </div>
+                </div>
+            </div>
+            <div class="heroPulse"></div>
+        </section>
+
+        <!-- Products -->
+        <section class="productsSection" id="products">
+            <div class="container">
+                <div class="sectionHeader">
+                    <span class="sectionSubtitle">Our Collections</span>
+                    <h2 class="sectionTitle">Refined Purification.</h2>
+                    <p class="sectionDesc">Select the perfect fit for your home. Each model is engineered for the
+                        specific water conditions of Hyderabad.</p>
+                </div>
+                <div class="productGrid" id="product-grid">
+                    <!-- Products dynamically rendered or static -->
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/copper_plus.png" class="productImage" loading="lazy">
+                                <span class="productTag">Bestseller</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">AquaGenius Copper+</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">RO+UV+Copper</span><span class="featureTag">pH
+                                        Balanced</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol"><span class="priceValue">₹12,500</span></div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol"><span class="priceValue">₹499<small>/mo</small></span></div>
+                                </div>
+                                <button onclick="showProduct('copper-plus')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/smart_iot.png" class="productImage" loading="lazy">
+                                <span class="productTag">Next-Gen</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">AquaGenius Smart</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">IoT Enabled</span><span class="featureTag">Alkaline</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol"><span class="priceValue">₹18,500</span></div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol"><span class="priceValue">₹699<small>/mo</small></span></div>
+                                </div>
+                                <button onclick="showProduct('smart-iot')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/basic_midnight.png" class="productImage" loading="lazy">
+                                <span class="productTag">Value</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">AquaGenius Basic</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">Compact</span><span class="featureTag">Efficient</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol"><span class="priceValue">₹8,999</span></div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol"><span class="priceValue">₹399<small>/mo</small></span></div>
+                                </div>
+                                <button onclick="showProduct('basic-ro')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/gold_midnight.png" class="productImage" loading="lazy">
+                                <span class="productTag">Premium</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">AquaGenius Gold</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">8 Stages</span><span class="featureTag">Gold Finish</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol"><span class="priceValue">₹10,500</span></div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol"><span class="priceValue">₹449<small>/mo</small></span></div>
+                                </div>
+                                <button onclick="showProduct('gold-standard')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="servicesSection" id="services">
+            <div class="container">
+                <div class="sectionHeader">
+                    <span class="sectionSubtitle">Support & Care</span>
+                    <h2 class="sectionTitle">Beyond Just Purity.</h2>
+                    <p class="sectionDesc">Our commitment to your health doesn't end with a sale. Enjoy world-class
+                        support and maintenance tailored for Hyderabad families.</p>
+                </div>
+                <div class="serviceGrid">
+                    <div class="serviceCard">
+                        <div class="serviceIcon">🛠️</div>
+                        <h3 class="serviceCardTitle">Free Installation</h3>
+                        <p class="serviceCardDesc">Expert setup within 24 hours of purchase, ensuring optimal
+                            performance.</p>
+                    </div>
+                    <div class="serviceCard">
+                        <div class="serviceIcon">🔄</div>
+                        <h3 class="serviceCardTitle">Annual Maintenance</h3>
+                        <p class="serviceCardDesc">Scheduled filter changes and system health checks to keep your family
+                            safe.</p>
+                    </div>
+                    <div class="serviceCard">
+                        <div class="serviceIcon">💧</div>
+                        <h3 class="serviceCardTitle">Water Testing</h3>
+                        <p class="serviceCardDesc">Regular TDS and purity analysis to ensure your water quality never
+                            drops.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video -->
+        <section class="videoSection" id="video">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle" id="active-video-title">Purity in Motion</h2>
+                    <p class="sectionDesc" id="active-video-desc">Witness the revolutionary Deep Ocean treatment
+                        process.</p>
+                </div>
+                <div class="playerContainer">
+                    <div class="mainPlayer">
+                        <div class="videoPlayer" id="mainVideoPlayer"
+                            style="background-image: url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80');">
+                            <div class="playBtnCircle">
+                                <div class="playTriangle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="videoPlaylist" id="videoPlaylist">
+                        <div class="playlistItem activeItem"
+                            data-vid="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80"
+                            data-title="Purity in Motion"
+                            data-desc="Witness the revolutionary Deep Ocean treatment process.">
+                            <div class="miniThumb"
+                                style="background-image: url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80');">
+                            </div>
+                            <div class="miniInfo">
+                                <h4>Purity in Motion</h4>
+                            </div>
+                        </div>
+                        <div class="playlistItem"
+                            data-vid="https://images.unsplash.com/photo-1584043720379-b56cd9199c94?auto=format&fit=crop&w=1600&q=80"
+                            data-title="RO + Copper Tech"
+                            data-desc="How our advanced filters infuse essential minerals.">
+                            <div class="miniThumb"
+                                style="background-image: url('https://images.unsplash.com/photo-1584043720379-b56cd9199c94?auto=format&fit=crop&w=1600&q=80');">
+                            </div>
+                            <div class="miniInfo">
+                                <h4>RO + Copper Tech</h4>
+                            </div>
+                        </div>
+                        <div class="playlistItem"
+                            data-vid="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1600&q=80"
+                            data-title="Smart IoT App" data-desc="Real-time water quality monitoring on your phone.">
+                            <div class="miniThumb"
+                                style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1600&q=80');">
+                            </div>
+                            <div class="miniInfo">
+                                <h4>Smart IoT App</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="reviewsSection" id="reviews">
+            <div class="container" style="margin-bottom: 40px;">
+                <div class="sectionHeader">
+                    <span class="sectionSubtitle">Testimonials</span>
+                    <h2 class="sectionTitle">Trusted by Thousands.</h2>
+                    <p class="sectionDesc">Join the community of 10k+ happy homes who have transformed their hydration
+                        experience with AquaGenius.</p>
+                </div>
+            </div>
+            <div class="reviewMarquee">
+                <div class="reviewTrack">
+                    <div class="reviewCard">
+                        <div class="reviewStars">★★★★★</div>
+                        <p class="reviewQuote">"Best investment for my family health."</p><span class="reviewAuthor">—
+                            Rajesh K.</span>
+                    </div>
+                    <div class="reviewCard">
+                        <div class="reviewStars">★★★★★</div>
+                        <p class="reviewQuote">"Crystal clear water. Smart sensors are great."</p><span
+                            class="reviewAuthor">— Anjali M.</span>
+                    </div>
+                    <div class="reviewCard">
+                        <div class="reviewStars">★★★★★</div>
+                        <p class="reviewQuote">"Quick installation. Outstanding service."</p><span
+                            class="reviewAuthor">— Vikram S.</span>
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="reviewCard">
+                        <div class="reviewStars">★★★★★</div>
+                        <p class="reviewQuote">"Best investment for my family health."</p><span class="reviewAuthor">—
+                            Rajesh K.</span>
+                    </div>
+                    <div class="reviewCard">
+                        <div class="reviewStars">★★★★★</div>
+                        <p class="reviewQuote">"Crystal clear water. Smart sensors are great."</p><span
+                            class="reviewAuthor">— Anjali M.</span>
+                    </div>
+                    <div class="reviewCard">
+                        <div class="reviewStars">★★★★★</div>
+                        <p class="reviewQuote">"Quick installation. Outstanding service."</p><span
+                            class="reviewAuthor">— Vikram S.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & FAQ -->
+        <section class="aboutSection" id="about">
+            <div class="container">
+                <div class="aboutGrid">
+                    <div>
+                        <span class="sectionSubtitle">Our Story</span>
+                        <h2 class="sectionTitle">Engineering Purity.</h2>
+                        <p class="sectionDesc">AquaGenius was founded to provide the cleanest water possible without
+                            complexity. Tailored for local conditions.</p>
+                        <div style="display: flex; gap: 40px; margin-top: 30px;">
+                            <div class="stat"><strong>10k+</strong><span>Happy Homes</span></div>
+                            <div class="stat"><strong>8+</strong><span>Stages</span></div>
+                        </div>
+                    </div>
+                    <div class="founderCard">
+                        <div class="founderImg"></div>
+                        <div class="founderInfo">
+                            <h4>Dr. Amit Reddy</h4><span>Founder & CEO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faqSection" id="faq">
+            <div class="container">
+                <div class="sectionHeader">
+                    <span class="sectionSubtitle">Common Questions</span>
+                    <h2 class="sectionTitle">Everything You Need to Know.</h2>
+                    <p class="sectionDesc">Have questions about our technology or subscription? We have answers. If you
+                        don't find what you're looking for, feel free to contact us.</p>
+                </div>
+                <div class="faqList">
+                    <div class="faqItem">
+                        <div class="faqQuestion">
+                            <h3>Is installation free?</h3><span>+</span>
+                        </div>
+                        <div class="faqAnswer">
+                            <p>Yes, standard installation is free within 24-48 hours.</p>
+                        </div>
+                    </div>
+                    <div class="faqItem">
+                        <div class="faqQuestion">
+                            <h3>How does subscription work?</h3><span>+</span>
+                        </div>
+                        <div class="faqAnswer">
+                            <p>Pay a monthly fee including maintenance and filter changes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Product Detail View -->
+    <div id="product-view">
+        <div class="container">
+            <span class="pdpBackLink" onclick="showMainView()">← Back to Catalog</span>
+            <div id="pdp-content">
+                <!-- Dynamically filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footerOverlay"></div>
+        <div class="container footerContent">
+            <div class="footerGrid">
+                <div>
+                    <h2>AQUAGENIUS</h2>
+                    <p>Redefining hydration with intelligent purification.</p>
+                </div>
+                <div class="footerLinks">
+                    <h4>Company</h4>
+                    <a href="#about" onclick="navigateToSection(event, 'about')">About Us</a>
+                    <a href="#products" onclick="navigateToSection(event, 'products')">Our Products</a>
+                    <a href="#services" onclick="navigateToSection(event, 'services')">Services</a>
+                    <a href="#faq" onclick="navigateToSection(event, 'faq')">FAQ</a>
+                </div>
+                <div class="footerContact">
+                    <h4>Contact Us</h4>
+                    <p>Sai Samrat Nagar, <br />Old Alwal area, Hyderabad</p>
+                    <a href="tel:09666687000">096666 87000</a>
+                    <span style="display: block; margin-top: 10px;">aquagenius2023@gmail.com</span>
+                </div>
+            </div>
+            <div class="footerBottom">
+                <p>&copy; 2026 AquaGenius. Designed for Purity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919666687000" class="whatsappFloat" target="_blank">
+        <div class="waPulse"></div>
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968841.png" width="40" height="40"
+            style="position:relative; z-index:2;">
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        const productsData = {
+            'copper-plus': {
+                name: 'AquaGenius Copper+', tagline: 'Active Copper & Zinc Infusion',
+                price: '12,500', rent: '499',
+                image: 'images/copper_plus.png',
+                gallery: ['images/copper_plus.png', 'images/cp_side.png', 'images/cp_lifestyle.png'],
+                features: ['RO + UV + Copper', 'pH Balanced', 'Smart Sensors', 'Auto-Flush'],
+                desc: 'The ultimate health-focused purifier that infuses your water with the goodness of Copper and Zinc.'
+            },
+            'smart-iot': {
+                name: 'AquaGenius Smart', tagline: 'Intelligent Water Management',
+                price: '18,500', rent: '699',
+                image: 'images/smart_iot.png',
+                gallery: ['images/smart_iot.png', 'images/smart_angle.png', 'images/smart_detail.png'],
+                features: ['IoT Enabled', 'Alkaline Infusion', 'Touch Control', 'Filter Life Tracker'],
+                desc: 'A futuristic purifier that connects to your smartphone for real-time monitoring.'
+            },
+            'basic-ro': {
+                name: 'AquaGenius Basic', tagline: 'Pure & Simple Hydration',
+                price: '8,999', rent: '399',
+                image: 'images/basic_midnight.png',
+                gallery: ['images/basic_midnight.png', 'images/basic_detail.png', 'images/basic_white.png'],
+                features: ['High Recovery RO', 'Mineral Booster', 'Compact Design', 'Efficient'],
+                desc: 'Urban-friendly design for pure water with minimal wastage.'
+            },
+            'gold-standard': {
+                name: 'AquaGenius Gold', tagline: 'The Pinnacle of Purification',
+                price: '10,500', rent: '449',
+                image: 'images/gold_midnight.png',
+                gallery: ['images/gold_midnight.png', 'images/gold_luxury.png', 'images/gold_top.png'],
+                features: ['8 Stage Filtration', 'Copper + Zinc', 'Auto Flush', 'Luminous Display'],
+                desc: 'Luxury design meets 8-stage military-grade filtration.'
+            }
+        };
+
+        const mainView = document.getElementById('main-view');
+        const productView = document.getElementById('product-view');
+        const pdpContent = document.getElementById('pdp-content');
+        const header = document.getElementById('header');
+        const mainNav = document.getElementById('main-nav');
+
+        let pdpInterval = null;
+
+        function showProduct(id) {
+            const product = productsData[id];
+            if (!product) return;
+
+            // Clear previous interval
+            if (pdpInterval) clearInterval(pdpInterval);
+
+            mainView.style.display = 'none';
+            productView.style.display = 'block';
+            mainNav.style.display = 'none';
+            window.scrollTo(0, 0);
+
+            let activeImageIdx = 0;
+            const gallery = product.gallery;
+
+            pdpContent.innerHTML = `
+                <div class="pdpGrid">
+                    <div class="pdpImageCol">
+                        <div class="pdpImageWrapper">
+                            <img src="${gallery[0]}" id="active-pdp-img" class="pdpImg">
+                            <button class="videoGlimpseBtn">Video Glimpse</button>
+                        </div>
+                        <div class="pdpGallery" id="pdp-thumbs">
+                            ${gallery.map((img, i) => `
+                                <div class="pdpThumb ${i === 0 ? 'active' : ''}" onclick="updatePdpImage(${i})">
+                                    <img src="${img}" style="width:100%; height:100%; object-fit:cover;">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="pdpContentCol">
+                        <span class="pdpTag glow-text" style="color:var(--gold); font-weight:700; letter-spacing:2px; display:block; margin-bottom:1rem;">${product.tagline}</span>
+                        <h1 class="pdpTitle glow-text">${product.name}</h1>
+                        <p class="pdpDesc">${product.desc}</p>
+                        <div class="pdpFeatureGrid">
+                            ${product.features.map(f => `<div class="pdpFeatureItem"><span style="color:var(--primary); font-weight:800; margin-right:10px;">✓</span> ${f}</div>`).join('')}
+                        </div>
+                        <div class="pdpPricing">
+                            <div class="pdpPriceCard"><span>OWN IT</span><h2>₹${product.price}</h2><button class="primaryBtn">Buy Now</button></div>
+                            <div class="pdpPriceCard rentCard"><span>RENT IT</span><h2>₹${product.rent}<small>/mo</small></h2><button class="secondaryBtn" style="background:var(--primary); color:var(--bg-deep);">Subscribe</button></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            window.updatePdpImage = (idx) => {
+                activeImageIdx = idx;
+                const imgEl = document.getElementById('active-pdp-img');
+                const thumbs = document.querySelectorAll('.pdpThumb');
+
+                imgEl.style.opacity = '0';
+                setTimeout(() => {
+                    imgEl.src = gallery[idx];
+                    imgEl.style.opacity = '1';
+                }, 200);
+
+                thumbs.forEach((t, i) => {
+                    if (i === idx) t.classList.add('active');
+                    else t.classList.remove('active');
+                });
+            };
+
+            // Auto-sliding logic
+            pdpInterval = setInterval(() => {
+                activeImageIdx = (activeImageIdx + 1) % gallery.length;
+                window.updatePdpImage(activeImageIdx);
+            }, 3000);
+        }
+
+        function showMainView() {
+            if (pdpInterval) clearInterval(pdpInterval);
+            mainView.style.display = 'block';
+            productView.style.display = 'none';
+            // We set it to empty string so CSS media queries can control visibility
+            mainNav.style.display = '';
+        }
+
+        function navigateToSection(e, id) {
+            if (e) e.preventDefault();
+
+            // Close mobile menu if open
+            menuToggle.classList.remove('open');
+            mobileNav.classList.remove('visible');
+            document.body.style.overflow = '';
+
+            showMainView();
+
+            const target = document.getElementById(id);
+            if (target) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - (headerHeight - 20);
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                // Update URL hash without jumping
+                history.pushState(null, null, `#${id}`);
+            }
+        }
+
+        // Active State Tracking
+        const sections = ['hero', 'products', 'services', 'video', 'reviews', 'about', 'faq'];
+        const navItems = document.querySelectorAll('.navItem');
+
+        function updateActiveNav() {
+            let current = '';
+            const scrollPos = window.scrollY + 150;
+
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = id;
+                    }
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Scroll Events
+        window.addEventListener('scroll', () => {
+            // Header Scroll Class
+            if (window.scrollY > 20) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+
+            // Active Nav Update
+            updateActiveNav();
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            mobileNav.classList.toggle('visible');
+            document.body.style.overflow = mobileNav.classList.contains('visible') ? 'hidden' : '';
+        });
+
+        // Video Playlist
+        const vItems = document.querySelectorAll('.playlistItem');
+        const vPlayer = document.getElementById('mainVideoPlayer');
+        const vTitle = document.getElementById('active-video-title');
+        const vDesc = document.getElementById('active-video-desc');
+
+        vItems.forEach(item => {
+            item.addEventListener('click', () => {
+                vItems.forEach(i => i.classList.remove('activeItem'));
+                item.classList.add('activeItem');
+                vPlayer.style.backgroundImage = `url('${item.dataset.vid}')`;
+                vTitle.innerText = item.dataset.title;
+                vDesc.innerText = item.dataset.desc;
+            });
+        });
+
+        // Hero Carousel
+        let heroIdx = 0;
+        const heroSlides = [
+            {
+                badge: 'Next-Gen Purification',
+                title: 'The Intelligent Choice for <br /><span class="gradient-text">Pure Water.</span>',
+                sub: 'Experience the Deep Ocean treatment. Advanced RO, UV, and Copper technology crafted for those who refuse to compromise on health.'
+            },
+            {
+                badge: 'Dynamic Range',
+                title: 'Pure Solutions for <br /><span class="gradient-text">Every Lifestyle.</span>',
+                sub: 'From compact models to IoT-enabled smart purifiers, we have the perfect fit for your modern home.'
+            },
+            {
+                badge: 'The AquaGenius USP',
+                title: 'Engineering <br /><span class="gradient-text">Absolute Purity.</span>',
+                sub: '8-stage filtration meets intelligent mineralization. Because your family deserves nothing but the best.'
+            },
+            {
+                badge: 'Owner Benefits',
+                title: 'Exclusive Offers on <br /><span class="gradient-text">Every Purchase.</span>',
+                sub: 'Get Free Installation and 1 Year Free AMC when you buy any AquaGenius purifier today.'
+            },
+            {
+                badge: 'Smart Subscription',
+                title: 'Pure Water with <br /><span class="gradient-text">Zero Commitment.</span>',
+                sub: 'Subscribe for 6 months or more and enjoy Free Installation plus hassle-free maintenance.'
+            }
+        ];
+        const hBadge = document.getElementById('heroBadge');
+        const hTitle = document.getElementById('heroTitle');
+        const hSub = document.getElementById('heroSubtitle');
+        const bgs = document.querySelectorAll('.bgLayer');
+
+        setInterval(() => {
+            heroIdx = (heroIdx + 1) % heroSlides.length;
+            hBadge.innerText = heroSlides[heroIdx].badge;
+            hTitle.innerHTML = heroSlides[heroIdx].title;
+            hSub.innerText = heroSlides[heroIdx].sub;
+            bgs.forEach((bg, i) => bg.classList.toggle('active', i === heroIdx));
+        }, 5000);
+
+        // FAQ Toggle
+        document.querySelectorAll('.faqQuestion').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('itemOpen');
+                q.querySelector('span').innerText = item.classList.contains('itemOpen') ? '−' : '+';
+            });
+        });
+
+        // Handle URL hash for "Home" sections
+        window.addEventListener('hashchange', () => {
+            if (window.location.hash.startsWith('#')) {
+                showMainView();
+            }
+        });
+    </script>
+</body>
+
+</html>
