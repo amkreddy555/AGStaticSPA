@@ -7,6 +7,7 @@
     <title>AquaGenius | Ultra Pure Water Solutions</title>
     <meta name="description"
         content="AquaGenius provides elite water purification systems using advanced RO, UV, and Copper technology.">
+    <link rel="icon" type="image/png" href="images/logo_icon.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
@@ -29,7 +30,7 @@
             --radius-full: 9999px;
             --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.2);
-            --section-padding: 100px 0;
+            --section-padding: 65px 0 70px 0;
         }
 
         * {
@@ -105,15 +106,16 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 1.5rem 0;
+            padding: 0.5rem 0 0.7rem 0;
             /* Support for mobile app notches */
-            padding-top: calc(1.5rem + env(safe-area-inset-top));
+            padding-top: calc(1rem + env(safe-area-inset-top));
+            padding-bottom: calc(1rem + env(safe-area-inset-bottom));
             transition: var(--transition);
             background: transparent;
         }
 
         .header.scrolled {
-            padding: 1rem 0;
+            padding: 0.5rem 0 0.7rem 0;
             background: rgba(5, 10, 30, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -133,22 +135,27 @@
             gap: 12px;
         }
 
-        .logoText h1 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            line-height: 1;
-            color: #ffffff;
+        .headerLogoImg {
+            height: 90px;
+            width: auto;
+            display: block;
         }
 
-        .logoText span {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--primary);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        .footerLogoImg {
+            height: 120px;
+            width: auto;
+            margin-bottom: 20px;
             display: block;
-            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .headerLogoImg {
+                height: 65px;
+            }
+
+            .footerLogoImg {
+                height: 80px;
+            }
         }
 
         .desktopNav {
@@ -373,18 +380,42 @@
             font-size: 1.1rem;
             box-shadow: var(--shadow-glow);
             display: inline-block;
+            transition: var(--transition);
+        }
+
+        .primaryBtn:hover {
+            transform: translateY(-5px);
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .primaryBtn:active {
+            transform: translateY(-2px);
         }
 
         .secondaryBtn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             color: #ffffff;
             padding: 1.2rem 3rem;
             border-radius: var(--radius-full);
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.1rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .secondaryBtn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .secondaryBtn:active {
+            transform: translateY(-2px);
         }
 
         .heroPulse {
@@ -398,6 +429,158 @@
             opacity: 0.15;
             z-index: 0;
             animation: pulseRotate 10s infinite alternate;
+        }
+
+        /* Dual Layout Styles for 1st Slide */
+        .heroInnerDual {
+            display: none;
+            width: 100%;
+            height: 100%;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero.dualLayout .heroInner {
+            display: none;
+        }
+
+        .hero.dualLayout .heroInnerDual {
+            display: grid;
+        }
+
+        .dualCol {
+            height: 95%;
+            margin: auto 1.5rem;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .dualCol:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: scale(1.02);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .dualCol h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .dualCol p {
+            font-size: 1.25rem;
+            max-width: 450px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .dualCol .primaryBtn,
+        .dualCol .secondaryBtn {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .benefitList {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .benefitList li {
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .benefitList li span {
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        @media (max-width: 768px) {
+            .heroInnerDual {
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+
+            .dualCol {
+                padding: 1.2rem 0.5rem;
+                height: 100%;
+                margin: auto 0.4rem;
+                border-radius: 16px;
+                background: rgba(0, 0, 0, 0.45);
+                /* Darker on mobile for better contrast */
+            }
+
+            .dualCol h2 {
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .dualCol p {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+
+            .benefitList {
+                margin-bottom: 1rem;
+            }
+
+            .benefitList li {
+                font-size: 0.75rem;
+                margin-bottom: 0.4rem;
+                gap: 5px;
+            }
+
+            .dualCol .primaryBtn,
+            .dualCol .secondaryBtn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.85rem;
+                width: 90%;
+            }
+
+            .sectionHeader {
+                margin-bottom: 40px;
+                padding: 0 10px;
+            }
+
+            .sectionSubtitle {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+                margin-bottom: 0.8rem;
+            }
+
+            .sectionTitle {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
+            }
+
+            .sectionDesc {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
         }
 
         @keyframes pulseRotate {
@@ -541,14 +724,30 @@
             border: 1px solid var(--glass-border);
         }
 
+        .priceCol {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .priceLabel {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
         .priceValue {
             font-size: 1.3rem;
             color: var(--text-main);
+            font-weight: 700;
         }
 
         .priceDivider {
             width: 1px;
-            height: 40px;
+            height: 45px;
             background: var(--glass-border);
         }
 
@@ -939,17 +1138,6 @@
             background: rgba(0, 212, 255, 0.05);
         }
 
-        .pdpBackLink {
-            color: var(--text-dim);
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 2rem;
-            cursor: pointer;
-        }
-
-        .pdpBackLink:hover {
-            color: var(--primary);
-        }
 
         .videoGlimpseBtn {
             position: absolute;
@@ -996,6 +1184,34 @@
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 60px;
             margin-bottom: 60px;
+        }
+
+        .footerLinks,
+        .footerContact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footerLinks h4,
+        .footerContact h4 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .footerLinks a,
+        .footerContact a,
+        .footerContact p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footerLinks a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
         }
 
         .footerBottom {
@@ -1057,7 +1273,7 @@
             }
 
             .pdpTitle {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
             /* Video Section Mobile Fix */
@@ -1081,27 +1297,35 @@
                 letter-spacing: 1px;
             }
 
-            /* PDP Mobile Fixes */
             .pdpPricing {
-                flex-direction: column;
-                gap: 1.5rem;
+                flex-direction: row;
+                gap: 10px;
+                margin-bottom: 2rem;
             }
 
             .pdpPriceCard {
-                padding: 1.5rem;
+                padding: 1.2rem 0.5rem;
+                border-radius: 12px;
+            }
+
+            .pdpPriceCard span {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
+            }
+
+            .pdpPriceCard h2 {
+                font-size: 1.2rem;
+                margin: 0.5rem 0;
             }
 
             .pdpPricing .primaryBtn,
             .pdpPricing .secondaryBtn {
                 width: 100% !important;
-                max-width: 280px;
-                display: flex;
-                justify-content: center;
-                margin: 0 auto;
+                padding: 0.8rem 0.5rem;
+                font-size: 0.8rem;
+                border-radius: var(--radius-sm);
             }
         }
-
-        /* App Button Styles Removed */
     </style>
 </head>
 
@@ -1110,14 +1334,7 @@
     <header class="header" id="header">
         <div class="container navbar">
             <a href="#" onclick="navigateToSection(event, 'hero'); return false;" class="logo">
-                <div class="logoIcon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3105/3105807.png" alt="Logo" width="40"
-                        height="40">
-                </div>
-                <div class="logoText">
-                    <h1 class="glow-text">AQUAGENIUS</h1>
-                    <span>ULTRA PURE WATER</span>
-                </div>
+                <img src="images/logo_main.png" alt="AquaGenius Logo" class="headerLogoImg">
             </a>
 
             <nav class="desktopNav" id="main-nav">
@@ -1157,12 +1374,10 @@
     <!-- Main Content View -->
     <div id="main-view">
         <!-- Hero -->
-        <section class="hero" id="hero">
-            <div class="bgLayer active" style="background-image: url('images/hero_bg.png');"></div>
+        <section class="hero dualLayout" id="hero">
+            <div class="bgLayer active" style="background-image: url('images/hero_dual.png');"></div>
             <div class="bgLayer" style="background-image: url('images/poster_lineup.png');"></div>
-            <div class="bgLayer" style="background-image: url('images/usp_highlight.png');"></div>
             <div class="bgLayer" style="background-image: url('images/purchase_offers.png');"></div>
-            <div class="bgLayer" style="background-image: url('images/sub_offers.png');"></div>
             <div class="heroOverlay"></div>
             <div class="container heroContent">
                 <div class="heroInner">
@@ -1172,10 +1387,34 @@
                     <p class="heroSubtitle" id="heroSubtitle">Experience the Deep Ocean treatment. Advanced RO, UV, and
                         Copper technology crafted for those who refuse to compromise on health.</p>
                     <div class="heroCtaGroup">
-                        <a href="#products" onclick="navigateToSection(event, 'products')" class="primaryBtn">Explorer
-                            Catalog</a>
-                        <a href="#video" onclick="navigateToSection(event, 'video')" class="secondaryBtn">Watch
-                            Video</a>
+                        <a href="#products" onclick="navigateToSection(event, 'products')"
+                            class="primaryBtn">Subscribe</a>
+                        <a href="#products" onclick="navigateToSection(event, 'products')" class="secondaryBtn">Buy</a>
+                    </div>
+                </div>
+                <div class="heroInnerDual">
+                    <div class="dualCol">
+                        <h2 class="glow-text">Smart<br /><span class="gradient-text">Subscription</span></h2>
+                        <ul class="benefitList">
+                            <li><span>✓</span> Zero initial cost</li>
+                            <li><span>✓</span> No Maintenance cost</li>
+                            <li><span>✓</span> Lifetime Warranty</li>
+                        </ul>
+                        <p>Enjoy elite water purification with zero Maintenance cost. Perfect for modern urban living.
+                        </p>
+                        <a href="#products" onclick="navigateToSection(event, 'products')"
+                            class="primaryBtn">Subscribe</a>
+                    </div>
+                    <div class="dualCol">
+                        <h2 class="glow-text">Premium<br /><span class="gradient-text">Purchase</span></h2>
+                        <ul class="benefitList">
+                            <li><span>✓</span> Full Ownership Rights</li>
+                            <li><span>✓</span> Exclusive Offers</li>
+                            <li><span>✓</span> Free Installation</li>
+                        </ul>
+                        <p>Own the ultimate health-focused technology. A lifetime investment for your family's safety.
+                        </p>
+                        <a href="#products" onclick="navigateToSection(event, 'products')" class="secondaryBtn">Buy</a>
                     </div>
                 </div>
             </div>
@@ -1206,9 +1445,15 @@
                                         Balanced</span>
                                 </div>
                                 <div class="productPricing">
-                                    <div class="priceCol"><span class="priceValue">₹12,500</span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Buy it</span>
+                                        <span class="priceValue">₹12,500</span>
+                                    </div>
                                     <div class="priceDivider"></div>
-                                    <div class="priceCol"><span class="priceValue">₹499<small>/mo</small></span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Rent it</span>
+                                        <span class="priceValue">₹499<small>/mo</small></span>
+                                    </div>
                                 </div>
                                 <button onclick="showProduct('copper-plus')" class="productCta">Select Model</button>
                             </div>
@@ -1226,9 +1471,15 @@
                                     <span class="featureTag">IoT Enabled</span><span class="featureTag">Alkaline</span>
                                 </div>
                                 <div class="productPricing">
-                                    <div class="priceCol"><span class="priceValue">₹18,500</span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Buy it</span>
+                                        <span class="priceValue">₹18,500</span>
+                                    </div>
                                     <div class="priceDivider"></div>
-                                    <div class="priceCol"><span class="priceValue">₹699<small>/mo</small></span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Rent it</span>
+                                        <span class="priceValue">₹699<small>/mo</small></span>
+                                    </div>
                                 </div>
                                 <button onclick="showProduct('smart-iot')" class="productCta">Select Model</button>
                             </div>
@@ -1246,9 +1497,15 @@
                                     <span class="featureTag">Compact</span><span class="featureTag">Efficient</span>
                                 </div>
                                 <div class="productPricing">
-                                    <div class="priceCol"><span class="priceValue">₹8,999</span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Buy it</span>
+                                        <span class="priceValue">₹8,999</span>
+                                    </div>
                                     <div class="priceDivider"></div>
-                                    <div class="priceCol"><span class="priceValue">₹399<small>/mo</small></span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Rent it</span>
+                                        <span class="priceValue">₹399<small>/mo</small></span>
+                                    </div>
                                 </div>
                                 <button onclick="showProduct('basic-ro')" class="productCta">Select Model</button>
                             </div>
@@ -1429,7 +1686,7 @@
                     <div class="founderCard">
                         <div class="founderImg"></div>
                         <div class="founderInfo">
-                            <h4>Dr. Amit Reddy</h4><span>Founder & CEO</span>
+                            <h4>Gopi</h4><span>Founder & CEO</span>
                         </div>
                     </div>
                 </div>
@@ -1469,7 +1726,6 @@
     <!-- Product Detail View -->
     <div id="product-view">
         <div class="container">
-            <span class="pdpBackLink" onclick="showMainView()">← Back to Catalog</span>
             <div id="pdp-content">
                 <!-- Dynamically filled by JS -->
             </div>
@@ -1481,7 +1737,7 @@
         <div class="container footerContent">
             <div class="footerGrid">
                 <div>
-                    <h2>AQUAGENIUS</h2>
+                    <img src="images/logo_main.png" alt="AquaGenius" class="footerLogoImg">
                     <p>Redefining hydration with intelligent purification.</p>
                 </div>
                 <div class="footerLinks">
@@ -1494,8 +1750,8 @@
                 <div class="footerContact">
                     <h4>Contact Us</h4>
                     <p>Sai Samrat Nagar, <br />Old Alwal area, Hyderabad</p>
-                    <a href="tel:09666687000">096666 87000</a>
-                    <span style="display: block; margin-top: 10px;">aquagenius2023@gmail.com</span>
+                    <a href="tel:+919848405890">+91 98484 05890</a>
+                    <span style="display: block; margin-top: 10px;">aquageniussales@gmail.com</span>
                 </div>
             </div>
             <div class="footerBottom">
@@ -1504,7 +1760,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/919666687000" class="whatsappFloat" target="_blank">
+    <a href="https://wa.me/919848405890" class="whatsappFloat" target="_blank">
         <div class="waPulse"></div>
         <img src="https://cdn-icons-png.flaticon.com/512/5968/5968841.png" width="40" height="40"
             style="position:relative; z-index:2;">
@@ -1512,6 +1768,15 @@
 
     <!-- Scripts -->
     <script>
+        const WHATSAPP_NUMBER = '919848405890';
+
+        function checkoutWhatsApp(productName, type) {
+            const intent = type === 'buy' ? 'buying' : 'subscribing to';
+            const message = `Hi, I am interested in ${intent} the ${productName}. Please provide more details.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+        }
+
         const productsData = {
             'copper-plus': {
                 name: 'AquaGenius Copper+', tagline: 'Active Copper & Zinc Infusion',
@@ -1564,7 +1829,6 @@
 
             mainView.style.display = 'none';
             productView.style.display = 'block';
-            mainNav.style.display = 'none';
             window.scrollTo(0, 0);
 
             let activeImageIdx = 0;
@@ -1593,8 +1857,8 @@
                             ${product.features.map(f => `<div class="pdpFeatureItem"><span style="color:var(--primary); font-weight:800; margin-right:10px;">✓</span> ${f}</div>`).join('')}
                         </div>
                         <div class="pdpPricing">
-                            <div class="pdpPriceCard"><span>OWN IT</span><h2>₹${product.price}</h2><button class="primaryBtn">Buy Now</button></div>
-                            <div class="pdpPriceCard rentCard"><span>RENT IT</span><h2>₹${product.rent}<small>/mo</small></h2><button class="secondaryBtn" style="background:var(--primary); color:var(--bg-deep);">Subscribe</button></div>
+                            <div class="pdpPriceCard"><span>OWN IT</span><h2>₹${product.price}</h2><button class="primaryBtn" onclick="checkoutWhatsApp('${product.name}', 'buy')">Buy Now</button></div>
+                            <div class="pdpPriceCard rentCard"><span>RENT IT</span><h2>₹${product.rent}<small>/mo</small></h2><button class="secondaryBtn" style="background:var(--primary); color:var(--bg-deep);" onclick="checkoutWhatsApp('${product.name}', 'sub')">Subscribe</button></div>
                         </div>
                     </div>
                 </div>
@@ -1731,33 +1995,35 @@
                 sub: 'From compact models to IoT-enabled smart purifiers, we have the perfect fit for your modern home.'
             },
             {
-                badge: 'The AquaGenius USP',
-                title: 'Engineering <br /><span class="gradient-text">Absolute Purity.</span>',
-                sub: '8-stage filtration meets intelligent mineralization. Because your family deserves nothing but the best.'
-            },
-            {
                 badge: 'Owner Benefits',
                 title: 'Exclusive Offers on <br /><span class="gradient-text">Every Purchase.</span>',
                 sub: 'Get Free Installation and 1 Year Free AMC when you buy any AquaGenius purifier today.'
-            },
-            {
-                badge: 'Smart Subscription',
-                title: 'Pure Water with <br /><span class="gradient-text">Zero Commitment.</span>',
-                sub: 'Subscribe for 6 months or more and enjoy Free Installation plus hassle-free maintenance.'
             }
         ];
         const hBadge = document.getElementById('heroBadge');
         const hTitle = document.getElementById('heroTitle');
         const hSub = document.getElementById('heroSubtitle');
         const bgs = document.querySelectorAll('.bgLayer');
+        const heroSection = document.getElementById('hero');
 
         setInterval(() => {
             heroIdx = (heroIdx + 1) % heroSlides.length;
-            hBadge.innerText = heroSlides[heroIdx].badge;
-            hTitle.innerHTML = heroSlides[heroIdx].title;
-            hSub.innerText = heroSlides[heroIdx].sub;
+
+            // Toggle Dual Layout for Slide 1 (Idx 0)
+            if (heroIdx === 0) {
+                heroSection.classList.add('dualLayout');
+            } else {
+                heroSection.classList.remove('dualLayout');
+                hBadge.innerText = heroSlides[heroIdx].badge;
+                hTitle.innerHTML = heroSlides[heroIdx].title;
+                hSub.innerText = heroSlides[heroIdx].sub;
+            }
+
             bgs.forEach((bg, i) => bg.classList.toggle('active', i === heroIdx));
         }, 5000);
+
+        // Initial setup check for Slide 1
+        if (heroIdx === 0) heroSection.classList.add('dualLayout');
 
         // FAQ Toggle
         document.querySelectorAll('.faqQuestion').forEach(q => {
