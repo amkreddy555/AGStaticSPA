@@ -7,7 +7,7 @@
     <title>AquaGenius | Ultra Pure Water Solutions</title>
     <meta name="description"
         content="AquaGenius provides elite water purification systems using advanced RO, UV, and Copper technology.">
-    <link rel="icon" type="image/png" href="images/logo_icon.png">
+    <link rel="icon" type="image/jpeg" href="images/tab_icon.jpeg">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
@@ -115,7 +115,7 @@
         }
 
         .header.scrolled {
-            padding: 0.5rem 0 0.7rem 0;
+            padding: 0.5rem 0 0.5rem 0;
             background: rgba(5, 10, 30, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -966,18 +966,19 @@
 
         /* About & FAQ */
         .aboutSection {
-            padding: var(--section-padding);
+            padding: 80px 0;
             background: var(--bg-surface);
         }
 
         .aboutGrid {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 80px;
+            gap: 40px;
+            align-items: center;
         }
 
         .stat strong {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary);
             display: block;
         }
@@ -987,7 +988,7 @@
             border-radius: var(--radius-xl);
             border: 1px solid var(--glass-border);
             overflow: hidden;
-            aspect-ratio: 3/4;
+            aspect-ratio: 4/4;
         }
 
         .founderImg {
@@ -1326,15 +1327,92 @@
                 border-radius: var(--radius-sm);
             }
         }
+
+        /* Splash Loader - Option 1: Purification Sweep */
+        .splashLoader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            display: grid;
+            place-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .splashLoader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loaderContent {
+            position: relative;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .loaderLogo {
+            width: 300px;
+            z-index: 10;
+            animation: logoEntrance 1.5s ease-out forwards;
+        }
+
+        /* The Shimmer Effect */
+        .loaderContent::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -150%;
+            width: 100%;
+            background: linear-gradient(to right,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent);
+            transform: skewX(-25deg);
+            animation: shimmerSweep 2.5s infinite;
+            z-index: 11;
+        }
+
+        @keyframes shimmerSweep {
+            100% {
+                left: 150%;
+            }
+        }
+
+        @keyframes logoEntrance {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+                filter: blur(10px);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loaderLogo {
+                width: 200px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Splash Loader -->
+    <div class="splashLoader" id="splashLoader">
+        <div class="loaderContent">
+            <img src="images/loader_logo.png" alt="AquaGenius" class="loaderLogo">
+        </div>
+    </div>
     <!-- Header -->
     <header class="header" id="header">
         <div class="container navbar">
             <a href="#" onclick="navigateToSection(event, 'hero'); return false;" class="logo">
-                <img src="images/logo_main.png" alt="AquaGenius Logo" class="headerLogoImg">
+                <img src="images/aquagenius_logo_hd.png" alt="AquaGenius Logo" class="headerLogoImg">
             </a>
 
             <nav class="desktopNav" id="main-nav">
@@ -1435,99 +1513,210 @@
                     <div class="productCard">
                         <div class="productCardInner">
                             <div class="productImageWrapper">
-                                <img src="images/copper_plus.png" class="productImage" loading="lazy">
+                                <img src="images/dolphin_plus.jpg" class="productImage" loading="lazy"
+                                    alt="Dolphin+ RO Water Purifier">
                                 <span class="productTag">Bestseller</span>
                             </div>
                             <div class="productCardBody">
-                                <h3 class="productName">AquaGenius Copper+</h3>
+                                <h3 class="productName">Dolphin+</h3>
                                 <div class="productFeatures">
-                                    <span class="featureTag">RO+UV+Copper</span><span class="featureTag">pH
-                                        Balanced</span>
+                                    <span class="featureTag">RO+Copper</span>
+                                    <span class="featureTag">1 Year Warranty</span>
                                 </div>
                                 <div class="productPricing">
                                     <div class="priceCol">
-                                        <span class="priceLabel">Buy it</span>
-                                        <span class="priceValue">₹12,500</span>
+                                        <span class="priceLabel">Offer Price</span>
+                                        <span class="priceValue">₹10,500</span>
+                                        <span
+                                            style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-dim);">₹13,990</span>
                                     </div>
                                     <div class="priceDivider"></div>
                                     <div class="priceCol">
-                                        <span class="priceLabel">Rent it</span>
-                                        <span class="priceValue">₹499<small>/mo</small></span>
+                                        <span class="priceLabel">EMI Plan</span>
+                                        <span class="priceValue">₹1,500<small>/mo</small></span>
+                                        <span style="font-size: 0.65rem; color: var(--primary);">x 6 Months</span>
                                     </div>
                                 </div>
-                                <button onclick="showProduct('copper-plus')" class="productCta">Select Model</button>
+                                <div
+                                    style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                    Down Payment: ₹1,500 + Proc. Fee: ₹300
+                                </div>
+                                <button onclick="showProduct('dolphin-plus')" class="productCta">Select Model</button>
                             </div>
                         </div>
                     </div>
                     <div class="productCard">
                         <div class="productCardInner">
                             <div class="productImageWrapper">
-                                <img src="images/smart_iot.png" class="productImage" loading="lazy">
+                                <img src="images/ventura_plus.jpg" class="productImage" loading="lazy"
+                                    alt="Ventura Plus RO Water Purifier">
                                 <span class="productTag">Next-Gen</span>
                             </div>
                             <div class="productCardBody">
-                                <h3 class="productName">AquaGenius Smart</h3>
+                                <h3 class="productName">Ventura Plus</h3>
                                 <div class="productFeatures">
-                                    <span class="featureTag">IoT Enabled</span><span class="featureTag">Alkaline</span>
+                                    <span class="featureTag">RO+UV+Alk</span>
+                                    <span class="featureTag">UV in Tank</span>
                                 </div>
                                 <div class="productPricing">
                                     <div class="priceCol">
-                                        <span class="priceLabel">Buy it</span>
-                                        <span class="priceValue">₹18,500</span>
+                                        <span class="priceLabel">Offer Price</span>
+                                        <span class="priceValue">₹13,500</span>
+                                        <span
+                                            style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-dim);">₹17,990</span>
                                     </div>
                                     <div class="priceDivider"></div>
                                     <div class="priceCol">
-                                        <span class="priceLabel">Rent it</span>
-                                        <span class="priceValue">₹699<small>/mo</small></span>
+                                        <span class="priceLabel">EMI Plan</span>
+                                        <span class="priceValue">₹1,500<small>/mo</small></span>
+                                        <span style="font-size: 0.65rem; color: var(--primary);">x 8 Months</span>
                                     </div>
                                 </div>
-                                <button onclick="showProduct('smart-iot')" class="productCta">Select Model</button>
+                                <div
+                                    style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                    Down Payment: ₹1,500 + Proc. Fee: ₹300
+                                </div>
+                                <button onclick="showProduct('ventura-plus')" class="productCta">Select Model</button>
                             </div>
                         </div>
                     </div>
                     <div class="productCard">
                         <div class="productCardInner">
                             <div class="productImageWrapper">
-                                <img src="images/basic_midnight.png" class="productImage" loading="lazy">
-                                <span class="productTag">Value</span>
-                            </div>
-                            <div class="productCardBody">
-                                <h3 class="productName">AquaGenius Basic</h3>
-                                <div class="productFeatures">
-                                    <span class="featureTag">Compact</span><span class="featureTag">Efficient</span>
-                                </div>
-                                <div class="productPricing">
-                                    <div class="priceCol">
-                                        <span class="priceLabel">Buy it</span>
-                                        <span class="priceValue">₹8,999</span>
-                                    </div>
-                                    <div class="priceDivider"></div>
-                                    <div class="priceCol">
-                                        <span class="priceLabel">Rent it</span>
-                                        <span class="priceValue">₹399<small>/mo</small></span>
-                                    </div>
-                                </div>
-                                <button onclick="showProduct('basic-ro')" class="productCta">Select Model</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="productCardInner">
-                            <div class="productImageWrapper">
-                                <img src="images/gold_midnight.png" class="productImage" loading="lazy">
+                                <img src="images/starlink.jpg" class="productImage" loading="lazy"
+                                    alt="Starlink RO Water Purifier">
                                 <span class="productTag">Premium</span>
                             </div>
                             <div class="productCardBody">
-                                <h3 class="productName">AquaGenius Gold</h3>
+                                <h3 class="productName">Starlink</h3>
                                 <div class="productFeatures">
-                                    <span class="featureTag">8 Stages</span><span class="featureTag">Gold Finish</span>
+                                    <span class="featureTag">RO+UV+Alk</span>
+                                    <span class="featureTag">TDS Controller</span>
                                 </div>
                                 <div class="productPricing">
-                                    <div class="priceCol"><span class="priceValue">₹10,500</span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Offer Price</span>
+                                        <span class="priceValue">₹13,500</span>
+                                        <span
+                                            style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-dim);">₹19,990</span>
+                                    </div>
                                     <div class="priceDivider"></div>
-                                    <div class="priceCol"><span class="priceValue">₹449<small>/mo</small></span></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">EMI Plan</span>
+                                        <span class="priceValue">₹1,500<small>/mo</small></span>
+                                        <span style="font-size: 0.65rem; color: var(--primary);">x 8 Months</span>
+                                    </div>
                                 </div>
-                                <button onclick="showProduct('gold-standard')" class="productCta">Select Model</button>
+                                <div
+                                    style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                    Down Payment: ₹1,500 + Proc. Fee: ₹300
+                                </div>
+                                <button onclick="showProduct('starlink')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/smart_led.jpg" class="productImage" loading="lazy"
+                                    alt="Smart LED RO Water Purifier">
+                                <span class="productTag">Luxury</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">Smart LED</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">Multi-Stage</span>
+                                    <span class="featureTag">Zinc+Copper</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Offer Price</span>
+                                        <span class="priceValue">₹13,500</span>
+                                        <span
+                                            style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-dim);">₹20,990</span>
+                                    </div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">EMI Plan</span>
+                                        <span class="priceValue">₹1,500<small>/mo</small></span>
+                                        <span style="font-size: 0.65rem; color: var(--primary);">x 8 Months</span>
+                                    </div>
+                                </div>
+                                <div
+                                    style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                    Down Payment: ₹1,500 + Proc. Fee: ₹300
+                                </div>
+                                <button onclick="showProduct('smart-led')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/smart_gray.jpg" class="productImage" loading="lazy"
+                                    alt="Smart RO Water Purifier">
+                                <span class="productTag">New Launch</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">Smart</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">9L Tank</span>
+                                    <span class="featureTag">UV in Tank</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Offer Price</span>
+                                        <span class="priceValue">₹16,500</span>
+                                        <span
+                                            style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-dim);">₹20,999</span>
+                                    </div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">EMI Plan</span>
+                                        <span class="priceValue">₹1,500<small>/mo</small></span>
+                                        <span style="font-size: 0.65rem; color: var(--primary);">x 9 Months</span>
+                                    </div>
+                                </div>
+                                <div
+                                    style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                    Down Payment: ₹3,000 + Proc. Fee: ₹300
+                                </div>
+                                <button onclick="showProduct('smart-classic')" class="productCta">Select Model</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productCard">
+                        <div class="productCardInner">
+                            <div class="productImageWrapper">
+                                <img src="images/ss_tank.jpg" class="productImage" loading="lazy"
+                                    alt="SS Tank RO Water Purifier">
+                                <span class="productTag">Premium Material</span>
+                            </div>
+                            <div class="productCardBody">
+                                <h3 class="productName">SS Tank</h3>
+                                <div class="productFeatures">
+                                    <span class="featureTag">Steel Tank</span>
+                                    <span class="featureTag">Zinc Copper</span>
+                                </div>
+                                <div class="productPricing">
+                                    <div class="priceCol">
+                                        <span class="priceLabel">Offer Price</span>
+                                        <span class="priceValue">₹16,500</span>
+                                        <span
+                                            style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-dim);">₹20,990</span>
+                                    </div>
+                                    <div class="priceDivider"></div>
+                                    <div class="priceCol">
+                                        <span class="priceLabel">EMI Plan</span>
+                                        <span class="priceValue">₹1,500<small>/mo</small></span>
+                                        <span style="font-size: 0.65rem; color: var(--primary);">x 10 Months</span>
+                                    </div>
+                                </div>
+                                <div
+                                    style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                    Down Payment: ₹1,500 + Proc. Fee: ₹300
+                                </div>
+                                <button onclick="showProduct('ss-tank')" class="productCta">Select Model</button>
                             </div>
                         </div>
                     </div>
@@ -1647,7 +1836,8 @@
                     <div class="reviewCard">
                         <div class="reviewStars">★★★★★</div>
                         <p class="reviewQuote">"Quick installation. Outstanding service."</p><span
-                            class="reviewAuthor">— Vikram S.</span>
+                            class="reviewAuthor">—
+                            Vikram S.</span>
                     </div>
                     <!-- Duplicates -->
                     <div class="reviewCard">
@@ -1663,7 +1853,8 @@
                     <div class="reviewCard">
                         <div class="reviewStars">★★★★★</div>
                         <p class="reviewQuote">"Quick installation. Outstanding service."</p><span
-                            class="reviewAuthor">— Vikram S.</span>
+                            class="reviewAuthor">—
+                            Vikram S.</span>
                     </div>
                 </div>
             </div>
@@ -1737,7 +1928,7 @@
         <div class="container footerContent">
             <div class="footerGrid">
                 <div>
-                    <img src="images/logo_main.png" alt="AquaGenius" class="footerLogoImg">
+                    <img src="images/aquagenius_logo_hd.png" alt="AquaGenius" class="footerLogoImg">
                     <p>Redefining hydration with intelligent purification.</p>
                 </div>
                 <div class="footerLinks">
@@ -1768,6 +1959,18 @@
 
     <!-- Scripts -->
     <script>
+        // Splash Loader Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('splashLoader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                // Remove from DOM after transition
+                setTimeout(() => {
+                    loader.remove();
+                }, 800);
+            }, 3000);
+        });
+
         const WHATSAPP_NUMBER = '919848405890';
 
         function checkoutWhatsApp(productName, type) {
@@ -1778,37 +1981,60 @@
         }
 
         const productsData = {
-            'copper-plus': {
-                name: 'AquaGenius Copper+', tagline: 'Active Copper & Zinc Infusion',
-                price: '12,500', rent: '499',
-                image: 'images/copper_plus.png',
-                gallery: ['images/copper_plus.png', 'images/cp_side.png', 'images/cp_lifestyle.png'],
-                features: ['RO + UV + Copper', 'pH Balanced', 'Smart Sensors', 'Auto-Flush'],
-                desc: 'The ultimate health-focused purifier that infuses your water with the goodness of Copper and Zinc.'
+            'dolphin-plus': {
+                name: 'Dolphin+', tagline: 'RO + Copper Protection',
+                price: '10,500', rent: '1,500',
+                rentLabel: 'EMI PLAN', buyLabel: 'OFFER PRICE',
+                image: 'images/dolphin_plus.jpg',
+                gallery: ['images/dolphin_plus.jpg', 'images/dolphin_plus_wall.jpg'],
+                features: ['RO + Copper Technology', '1 Year Warranty', 'Food Grade Material', 'Auto Shut-off'],
+                desc: 'Experience pure water with advanced RO and Copper technology. Get it now with our easy EMI plan: ₹1500 Down Payment + ₹1500 x 6 Months.'
             },
-            'smart-iot': {
-                name: 'AquaGenius Smart', tagline: 'Intelligent Water Management',
-                price: '18,500', rent: '699',
-                image: 'images/smart_iot.png',
-                gallery: ['images/smart_iot.png', 'images/smart_angle.png', 'images/smart_detail.png'],
-                features: ['IoT Enabled', 'Alkaline Infusion', 'Touch Control', 'Filter Life Tracker'],
-                desc: 'A futuristic purifier that connects to your smartphone for real-time monitoring.'
+
+            'ventura-plus': {
+                name: 'Ventura Plus', tagline: 'Alkaline + UV in Tank Protection',
+                price: '13,500', rent: '1,500',
+                rentLabel: 'EMI PLAN', buyLabel: 'OFFER PRICE',
+                image: 'images/ventura_plus.jpg',
+                gallery: ['images/ventura_plus.jpg'],
+                features: ['RO+UV+Zinc Copper Alkaline', 'TDS Controller', 'UV in Tank', '1 Year Warranty'],
+                desc: 'Advanced purification with Alkaline technology and in-tank UV protection. Get it now with our easy EMI plan: ₹1500 Down Payment + ₹1500 x 8 Months.'
             },
-            'basic-ro': {
-                name: 'AquaGenius Basic', tagline: 'Pure & Simple Hydration',
-                price: '8,999', rent: '399',
-                image: 'images/basic_midnight.png',
-                gallery: ['images/basic_midnight.png', 'images/basic_detail.png', 'images/basic_white.png'],
-                features: ['High Recovery RO', 'Mineral Booster', 'Compact Design', 'Efficient'],
-                desc: 'Urban-friendly design for pure water with minimal wastage.'
+            'starlink': {
+                name: 'Starlink', tagline: 'Comprehensive 8-Stage Protection',
+                price: '13,500', rent: '1,500',
+                rentLabel: 'EMI PLAN', buyLabel: 'OFFER PRICE',
+                image: 'images/starlink.jpg',
+                gallery: ['images/starlink.jpg'],
+                features: ['RO+UV+Zinc Copper Alkaline', 'TDS Controller', 'UV in Tank', '3 Year Pump Warranty'],
+                desc: 'Premium purification with advanced TDS control and multi-stage filtration. Get it now with our easy EMI plan: ₹1500 Down Payment + ₹1500 x 8 Months.'
             },
-            'gold-standard': {
-                name: 'AquaGenius Gold', tagline: 'The Pinnacle of Purification',
-                price: '10,500', rent: '449',
-                image: 'images/gold_midnight.png',
-                gallery: ['images/gold_midnight.png', 'images/gold_luxury.png', 'images/gold_top.png'],
-                features: ['8 Stage Filtration', 'Copper + Zinc', 'Auto Flush', 'Luminous Display'],
-                desc: 'Luxury design meets 8-stage military-grade filtration.'
+            'smart-led': {
+                name: 'Smart LED', tagline: 'Intelligent Purification System',
+                price: '13,500', rent: '1,500',
+                rentLabel: 'EMI PLAN', buyLabel: 'OFFER PRICE',
+                image: 'images/smart_led.jpg',
+                gallery: ['images/smart_led.jpg'],
+                features: ['RO+UV+Zinc Copper Alkaline', 'TDS Controller', 'UV in Tank', 'Smart LED Display'],
+                desc: 'State-of-the-art purification with smart LED indicators and comprehensive multi-stage health benefits. Get it now with our easy EMI plan: ₹1500 Down Payment + ₹1500 x 8 Months.'
+            },
+            'smart-classic': {
+                name: 'Smart', tagline: 'High Capacity Intelligent Purification',
+                price: '16,500', rent: '1,500',
+                rentLabel: 'EMI PLAN', buyLabel: 'OFFER PRICE',
+                image: 'images/smart_gray.jpg',
+                gallery: ['images/smart_gray.jpg', 'images/smart_black.jpg', 'images/smart_white.jpg'],
+                features: ['RO+UV+Zinc Copper Alkaline', '9 Liter Storage', 'UV in Tank', 'TDS Controller'],
+                desc: 'Large capacity 9L tank with advanced purification and multiple finish options (Gray, Black, White). Get it now with our easy EMI plan: ₹3000 Down Payment + ₹1500 x 9 Months.'
+            },
+            'ss-tank': {
+                name: 'SS Tank', tagline: 'Pure Steel Protection',
+                price: '16,500', rent: '1,500',
+                rentLabel: 'EMI PLAN', buyLabel: 'OFFER PRICE',
+                image: 'images/ss_tank.jpg',
+                gallery: ['images/ss_tank.jpg'],
+                features: ['304 Grade Stainless Steel Tank', '7 Liter Storage', 'RO+UV+Zinc Copper Alkaline', 'UV in Tank'],
+                desc: 'Premium hygiene with a Stainless Steel storage tank to prevent bacterial growth. Get it now with our easy EMI plan: ₹1500 Down Payment + ₹1500 x 10 Months.'
             }
         };
 
@@ -1832,7 +2058,7 @@
             window.scrollTo(0, 0);
 
             let activeImageIdx = 0;
-            const gallery = product.gallery;
+            const gallery = product.gallery || [product.image];
 
             pdpContent.innerHTML = `
                 <div class="pdpGrid">
@@ -1857,8 +2083,8 @@
                             ${product.features.map(f => `<div class="pdpFeatureItem"><span style="color:var(--primary); font-weight:800; margin-right:10px;">✓</span> ${f}</div>`).join('')}
                         </div>
                         <div class="pdpPricing">
-                            <div class="pdpPriceCard"><span>OWN IT</span><h2>₹${product.price}</h2><button class="primaryBtn" onclick="checkoutWhatsApp('${product.name}', 'buy')">Buy Now</button></div>
-                            <div class="pdpPriceCard rentCard"><span>RENT IT</span><h2>₹${product.rent}<small>/mo</small></h2><button class="secondaryBtn" style="background:var(--primary); color:var(--bg-deep);" onclick="checkoutWhatsApp('${product.name}', 'sub')">Subscribe</button></div>
+                            <div class="pdpPriceCard"><span>${product.buyLabel || 'OWN IT'}</span><h2>₹${product.price}</h2><button class="primaryBtn" onclick="checkoutWhatsApp('${product.name}', 'buy')">Buy Now</button></div>
+                            <div class="pdpPriceCard rentCard"><span>${product.rentLabel || 'RENT IT'}</span><h2>₹${product.rent}<small>/mo</small></h2><button class="secondaryBtn" style="background:var(--primary); color:var(--bg-deep);" onclick="checkoutWhatsApp('${product.name}', 'sub')">Subscribe</button></div>
                         </div>
                     </div>
                 </div>
