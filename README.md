@@ -1,3 +1,22 @@
-SPA for the AquaGenius web app, customized for the mobile app.
-<img width="326" height="661" alt="image" src="https://github.com/user-attachments/assets/ff549681-4f5f-4f99-9655-1e025c8f24c8" />
-<img width="307" height="647" alt="image" src="https://github.com/user-attachments/assets/7c43a394-acdc-4639-9082-f34619b83b52" />
+# AquaGenius SPA
+
+A premium, high-performance Single Page Application (SPA) for AquaGenius, featuring a global-standard "Luxe" aesthetic. Engineered for both desktop and mobile app integration.
+
+## Key Features
+
+- **Luxe Design System**: A sophisticated "Gold & Glass" aesthetic with frosted surfaces and premium typography.
+- **Dynamic Hero Slider**: High-impact messaging with an 11-second premium transition pace.
+- **Intelligent PDP**: Optimized Product Detail Pages with integrated multi-line WhatsApp checkout flows.
+- **Mobile First**: Reclaimed vertical real estate, gesture-friendly dot indicators, and compact layout for high conversion.
+- **Media Gallery**: Integrated video playlist for educational content and brand storytelling.
+
+## Tech Stack
+
+- **Frontend**: Vanilla HTML5, CSS3, ES6+ Javascript
+- **Icons**: Phosphor Icons (Light Weight)
+- **Typography**: Outfit (Google Fonts)
+- **Animations**: CSS Keyframes & Scroll-driven interactions
+
+## Development
+
+The project is structured as a zero-dependency SPA for maximum performance and easy hosting.

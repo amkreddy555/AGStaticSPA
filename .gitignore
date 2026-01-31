@@ -1,0 +1,5 @@
+*.zip
+*.txt
+.DS_Store
+Thumbs.db
+verify_zip/
